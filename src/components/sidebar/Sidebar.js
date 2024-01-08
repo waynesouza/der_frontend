@@ -1,31 +1,24 @@
 import React, { useState } from 'react';
-import { FaHome, FaTools, FaUserCircle, FaAngleDown } from 'react-icons/fa'; // Importe ícones adicionais conforme necessário
+import './sidebar.css';
 
-function Sidebar() {
-    const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+const Entity = ({ name, type, onDragStart }) => {
+
 
     return (
-        <div className="sidebar">
-            <div className="sidebar-menu">
-                <div className="menu-item">
-                    <FaHome /> <span>Home</span>
-                </div>
-                <div className="menu-item" onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}>
-                    <FaTools /> <span>Tools</span> <FaAngleDown />
-                    {isSubMenuOpen && (
-                        <div className="submenu">
-                            <div>Tool 1</div>
-                            <div>Tool 2</div>
-                            <div>Tool 3</div>
-                        </div>
-                    )}
-                </div>
-                <div className="menu-item">
-                    <FaUserCircle /> <span>User</span>
-                </div>
-            </div>
+        <div draggable onDragStart={(e) => onDragStart(e, { name, type })} className="entity">
+            {name}
         </div>
     );
-}
+};
+
+const Sidebar = ({ onDragStart }) => {
+    return (
+        <div className="sidebar">
+            <div className="sidebar-header">Entidades</div>
+            <Entity name="Entidade 1" type="entity" onDragStart={onDragStart} />
+            <Entity name="Entidade 2" type="entity" onDragStart={onDragStart} />
+        </div>
+    );
+};
 
 export default Sidebar;
