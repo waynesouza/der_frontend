@@ -1,15 +1,30 @@
+/* sidebar.css */
 .sidebar {
-    width: 200px;
     border-right: 1px solid #ddd;
     background-color: #f7f7f7;
-    padding: 10px;
     overflow-y: auto;
+    transition: width 0.3s;
+}
+
+.sidebar.expanded {
+    width: 200px;
+}
+
+.sidebar.collapsed {
+    width: 50px; /* Ajuste conforme necessário */
 }
 
 .sidebar-header {
     font-weight: bold;
     padding: 10px 5px;
     border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-space {
+    margin-right: 10px;
 }
 
 .entity {
@@ -24,8 +39,4 @@
 .entity:hover {
     background-color: #e6e6e6;
     border-color: #aaa;
-}
-
-.entity-icon {
-    margin-right: 5px;
 }

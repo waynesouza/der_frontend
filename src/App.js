@@ -10,11 +10,10 @@ const App = () => {
     };
 
     return (
-      <div className="container mt-3">
-        <h2 className="mb-3">React Canvas Draggable Shapes Example</h2>
+        <div style={{ display: 'flex', height: '100vh' }}>
           <Sidebar onDragStart={handleDragStart} />
           <Canvas />
-      </div>
+        </div>
     );
 };
 
