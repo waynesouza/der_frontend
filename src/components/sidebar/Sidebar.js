@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import './sidebar.css';
 
-const Entity = ({ name, type, onDragStart }) => {
+const Entity = ({ name }) => {
+    const handleDragStart = (e) => {
+        const entityData = {
+            name: name
+        };
+        e.dataTransfer.setData("application/reactflow", JSON.stringify(entityData));
+        e.dataTransfer.effectAllowed = "move";
+    };
+
     return (
-        <div draggable onDragStart={(e) => onDragStart(e, { name, type })} className="entity">
+        <div draggable onDragStart={handleDragStart} className="entity">
             {name}
         </div>
     );
