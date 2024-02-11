@@ -1,18 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Sidebar from "./components/sidebar/Sidebar";
 import Canvas from "./components/Canvas";
 
 const App = () => {
-    const handleDragStart = (event, entity) => {
-        event.dataTransfer.setData("application/reactflow", JSON.stringify(entity));
-        event.dataTransfer.effectAllowed = "move";
+
+    const [nodeDataArray, setNodeDataArray] = useState([]);
+
+    const addEntity = (newEntity) => {
+        console.log([...nodeDataArray, newEntity]);
+        setNodeDataArray([...nodeDataArray, newEntity]);
     };
 
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
-          <Sidebar onDragStart={handleDragStart} />
-          <Canvas />
+          <Sidebar addEntity={addEntity} />
+          <Canvas nodeDataArray={nodeDataArray} />
         </div>
     );
 };
